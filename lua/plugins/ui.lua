@@ -54,6 +54,19 @@ return {
           expander_collapsed = "",
           expander_expanded = "",
         },
+        git_status = {
+          symbols = {
+            added = "",
+            deleted = "",
+            modified = "",
+            renamed = "󰁕",
+            untracked = "",
+            ignored = "",
+            unstaged = "",
+            staged = "",
+            conflict = "",
+          },
+        },
       },
       window = {
         position = "left",
