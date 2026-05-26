@@ -32,7 +32,11 @@ On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
 - Treesitter syntax highlighting
 - Git signs and LazyGit integration
 - Telescope fuzzy finding
+- Project-wide search and replace with Spectre
+- Fast in-file navigation with Flash
 - VS Code-style file sidebar with Neo-tree
+- Undo history browser with Undotree
+- Git conflict resolution helpers
 - Session restore with Persistence
 - Floating, horizontal, and vertical terminals
 - Test runner UI with Neotest
@@ -43,9 +47,15 @@ On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
 - `<leader>ff`: find files
 - `<leader>fg`: live grep
 - `<leader>fb`: buffers
+- `s`: Flash jump
+- `S`: Flash Treesitter jump
+- `<leader>sr`: search and replace
+- `<leader>sw`: search current word or visual selection
+- `<leader>sf`: search in current file
 - `<leader>e`: toggle file sidebar
 - `<leader>E`: focus file sidebar
 - `-`: open parent directory with Oil
+- `<leader>u`: undo tree
 - `<leader>cf`: format
 - `<leader>ca`: code action
 - `<leader>rn`: rename symbol
@@ -61,6 +71,12 @@ On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
 - `<leader>gs`: stage Git hunk
 - `<leader>gr`: reset Git hunk
 - `]h` / `[h`: next/previous Git hunk
+- `<leader>gco`: choose our conflict
+- `<leader>gct`: choose their conflict
+- `<leader>gcb`: choose both conflicts
+- `<leader>gc0`: choose neither conflict
+- `<leader>gcn`: next conflict
+- `<leader>gcp`: previous conflict
 - `<leader>qs`: restore session
 - `<leader>ql`: restore last session
 - `<leader>qd`: stop session save

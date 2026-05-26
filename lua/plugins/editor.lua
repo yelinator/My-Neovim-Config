@@ -82,6 +82,17 @@ return {
     opts = {},
   },
   {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash jump" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter search" },
+    },
+  },
+  {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
@@ -152,6 +163,28 @@ return {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",
     dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
+    "akinsho/git-conflict.nvim",
+    version = "*",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      default_mappings = false,
+      default_commands = true,
+      disable_diagnostics = true,
+      highlights = {
+        incoming = "DiffAdd",
+        current = "DiffText",
+      },
+    },
+    keys = {
+      { "<leader>gco", "<cmd>GitConflictChooseOurs<cr>", desc = "Choose our conflict" },
+      { "<leader>gct", "<cmd>GitConflictChooseTheirs<cr>", desc = "Choose their conflict" },
+      { "<leader>gcb", "<cmd>GitConflictChooseBoth<cr>", desc = "Choose both conflicts" },
+      { "<leader>gc0", "<cmd>GitConflictChooseNone<cr>", desc = "Choose neither conflict" },
+      { "<leader>gcn", "<cmd>GitConflictNextConflict<cr>", desc = "Next conflict" },
+      { "<leader>gcp", "<cmd>GitConflictPrevConflict<cr>", desc = "Previous conflict" },
+    },
   },
   {
     "folke/persistence.nvim",
@@ -230,5 +263,39 @@ return {
         },
       }
     end,
+  },
+  {
+    "nvim-pack/nvim-spectre",
+    cmd = "Spectre",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      { "<leader>sr", function() require("spectre").open() end, desc = "Search and replace" },
+      {
+        "<leader>sw",
+        function() require("spectre").open_visual({ select_word = true }) end,
+        desc = "Search current word",
+      },
+      {
+        "<leader>sw",
+        function() require("spectre").open_visual() end,
+        mode = "v",
+        desc = "Search selection",
+      },
+      {
+        "<leader>sf",
+        function() require("spectre").open_file_search({ select_word = true }) end,
+        desc = "Search in file",
+      },
+    },
+    opts = {
+      open_cmd = "noswapfile vnew",
+    },
+  },
+  {
+    "mbbill/undotree",
+    cmd = "UndotreeToggle",
+    keys = {
+      { "<leader>u", "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>", desc = "Undo tree" },
+    },
   },
 }
