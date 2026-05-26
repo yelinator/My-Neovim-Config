@@ -29,7 +29,11 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
-    cmd = "Neotree",
+    lazy = false,
+    init = function()
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+    end,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
@@ -66,7 +70,7 @@ return {
         follow_current_file = {
           enabled = true,
         },
-        hijack_netrw_behavior = "open_current",
+        hijack_netrw_behavior = "open_default",
         filtered_items = {
           visible = true,
           hide_dotfiles = false,
