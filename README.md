@@ -32,6 +32,7 @@ On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
 - Treesitter syntax highlighting
 - Git signs and LazyGit integration
 - Telescope fuzzy finding
+- VS Code-style file sidebar with Neo-tree
 - DAP base setup with Python support
 
 ## Keymaps
@@ -39,7 +40,9 @@ On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
 - `<leader>ff`: find files
 - `<leader>fg`: live grep
 - `<leader>fb`: buffers
-- `<leader>e`: file explorer
+- `<leader>e`: toggle file sidebar
+- `<leader>E`: focus file sidebar
+- `-`: open parent directory with Oil
 - `<leader>cf`: format
 - `<leader>ca`: code action
 - `<leader>rn`: rename symbol
