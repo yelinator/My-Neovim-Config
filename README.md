@@ -52,6 +52,12 @@ On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
 - `<leader>cS`: workspace symbols
 - `<leader>xx`: diagnostics
 - `<leader>gg`: LazyGit
+- `<leader>gb`: Git blame line
+- `<leader>gt`: toggle inline Git blame
+- `<leader>gp`: preview Git hunk
+- `<leader>gs`: stage Git hunk
+- `<leader>gr`: reset Git hunk
+- `]h` / `[h`: next/previous Git hunk
 - `<leader>db`: toggle breakpoint
 - `<leader>dc`: debug continue
 - `<leader>rr`: Rust runnables
