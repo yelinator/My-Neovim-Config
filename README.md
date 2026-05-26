@@ -30,6 +30,7 @@ On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
 - Formatting with `conform.nvim`
 - Linting with `nvim-lint`
 - Treesitter syntax highlighting
+- VS Code-style soft word wrap with display-line movement
 - Git signs and LazyGit integration
 - Telescope fuzzy finding
 - Project-wide search and replace with Spectre
@@ -47,6 +48,7 @@ On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
 - `<leader>ff`: find files
 - `<leader>fg`: live grep
 - `<leader>fb`: buffers
+- `j` / `k`: move by wrapped display lines unless a count is provided
 - `s`: Flash jump
 - `S`: Flash Treesitter jump
 - `<leader>sr`: search and replace
