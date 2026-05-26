@@ -203,10 +203,19 @@ return {
       { "<leader>tt", "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle terminal" },
       { "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", desc = "Horizontal terminal" },
       { "<leader>tv", "<cmd>ToggleTerm direction=vertical<cr>", desc = "Vertical terminal" },
+      { "<leader>tt", [[<c-\><c-n><cmd>ToggleTerm direction=float<cr>]], mode = "t", desc = "Toggle terminal" },
+      { "<leader>th", [[<c-\><c-n><cmd>ToggleTerm direction=horizontal<cr>]], mode = "t", desc = "Horizontal terminal" },
+      { "<leader>tv", [[<c-\><c-n><cmd>ToggleTerm direction=vertical<cr>]], mode = "t", desc = "Vertical terminal" },
+      { "<esc><esc>", [[<c-\><c-n><cmd>ToggleTerm<cr>]], mode = "t", desc = "Hide current terminal" },
     },
     opts = {
       open_mapping = [[<c-\>]],
       direction = "float",
+      on_open = function(term)
+        vim.keymap.set("t", "<esc><esc>", function()
+          term:toggle()
+        end, { buffer = term.bufnr, desc = "Hide current terminal" })
+      end,
       float_opts = {
         border = "rounded",
       },

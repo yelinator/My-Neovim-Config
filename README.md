@@ -83,6 +83,7 @@ On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
 - `<leader>tt`: toggle floating terminal
 - `<leader>th`: horizontal terminal
 - `<leader>tv`: vertical terminal
+- `<esc><esc>` in terminal mode: hide focused terminal
 - `<leader>tn`: run nearest test
 - `<leader>tf`: run file tests
 - `<leader>ta`: run all tests
