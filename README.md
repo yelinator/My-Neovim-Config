@@ -33,6 +33,9 @@ On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
 - Git signs and LazyGit integration
 - Telescope fuzzy finding
 - VS Code-style file sidebar with Neo-tree
+- Session restore with Persistence
+- Floating, horizontal, and vertical terminals
+- Test runner UI with Neotest
 - DAP base setup with Python support
 
 ## Keymaps
@@ -58,6 +61,20 @@ On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
 - `<leader>gs`: stage Git hunk
 - `<leader>gr`: reset Git hunk
 - `]h` / `[h`: next/previous Git hunk
+- `<leader>qs`: restore session
+- `<leader>ql`: restore last session
+- `<leader>qd`: stop session save
+- `<leader>tt`: toggle floating terminal
+- `<leader>th`: horizontal terminal
+- `<leader>tv`: vertical terminal
+- `<leader>tn`: run nearest test
+- `<leader>tf`: run file tests
+- `<leader>ta`: run all tests
+- `<leader>ts`: toggle test summary
+- `<leader>to`: test output
+- `<leader>tO`: toggle test output panel
+- `<leader>td`: debug nearest test
+- `<leader>tx`: stop test
 - `<leader>db`: toggle breakpoint
 - `<leader>dc`: debug continue
 - `<leader>rr`: Rust runnables

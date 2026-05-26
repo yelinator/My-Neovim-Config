@@ -153,4 +153,82 @@ return {
     cmd = "LazyGit",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    opts = {},
+    keys = {
+      { "<leader>qs", function() require("persistence").load() end, desc = "Restore session" },
+      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore last session" },
+      { "<leader>qd", function() require("persistence").stop() end, desc = "Stop session save" },
+    },
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    keys = {
+      { "<leader>tt", "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle terminal" },
+      { "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", desc = "Horizontal terminal" },
+      { "<leader>tv", "<cmd>ToggleTerm direction=vertical<cr>", desc = "Vertical terminal" },
+    },
+    opts = {
+      open_mapping = [[<c-\>]],
+      direction = "float",
+      float_opts = {
+        border = "rounded",
+      },
+    },
+  },
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-neotest/nvim-nio",
+      "nvim-treesitter/nvim-treesitter",
+      "rouge8/neotest-rust",
+      "nvim-neotest/neotest-python",
+      "nvim-neotest/neotest-jest",
+      "fredrikaverpil/neotest-golang",
+    },
+    keys = {
+      { "<leader>tn", function() require("neotest").run.run() end, desc = "Run nearest test" },
+      { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run file tests" },
+      { "<leader>ta", function() require("neotest").run.run(vim.loop.cwd()) end, desc = "Run all tests" },
+      { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle test summary" },
+      { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "Test output" },
+      { "<leader>tO", function() require("neotest").output_panel.toggle() end, desc = "Toggle test output panel" },
+      { "<leader>td", function() require("neotest").run.run({ strategy = "dap" }) end, desc = "Debug nearest test" },
+      { "<leader>tx", function() require("neotest").run.stop() end, desc = "Stop test" },
+    },
+    opts = function()
+      return {
+        adapters = {
+          require("neotest-rust"),
+          require("neotest-python")({
+            dap = { justMyCode = false },
+          }),
+          require("neotest-jest")({
+            jestCommand = "npm test --",
+            jestConfigFile = function()
+              local config_files = {
+                "jest.config.ts",
+                "jest.config.js",
+                "jest.config.mjs",
+                "jest.config.cjs",
+              }
+
+              for _, file in ipairs(config_files) do
+                if vim.fn.filereadable(file) == 1 then
+                  return file
+                end
+              end
+
+              return nil
+            end,
+          }),
+          require("neotest-golang"),
+        },
+      }
+    end,
+  },
 }
