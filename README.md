@@ -9,7 +9,9 @@ Lua Neovim setup for Python, Rust, JavaScript/TypeScript, and web development.
 - A C compiler and `make` for optional Telescope FZF native support
 - Language runtimes you use: Python, Node.js/npm, Rust/Cargo
 - Go support is configured, but Go tools require `go` on `PATH`
-- Rust formatting uses `rustfmt` from the Rust toolchain: `rustup component add rustfmt`
+- Rust development uses Cargo, Rust Analyzer, Clippy, and rustfmt:
+  `rustup component add rust-analyzer clippy rustfmt`
+- Rust Neotest support uses cargo-nextest: `cargo install cargo-nextest --locked`
 - Optional: `lazygit`
 
 On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
@@ -42,6 +44,9 @@ On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
 - Floating, horizontal, and vertical terminals
 - Test runner UI with Neotest
 - DAP base setup with Python support
+- Advanced Rust support with Cargo dependency intelligence, Clippy checks,
+  inlay hints, runnable/test/debug discovery, structural search and replace,
+  macro expansion, syntax tree inspection, and CodeLLDB debugging
 
 ## Keymaps
 
@@ -105,5 +110,16 @@ On first launch, `lazy.nvim` will be bootstrapped and plugins will install.
 - `<leader>rl`: run Rust CodeLens
 - `<leader>rm`: expand Rust macro
 - `<leader>re`: explain Rust error
+- `<leader>rR`: reload Rust workspace
+- `<leader>rf`: run Rust fly check
+- `<leader>rj`: related Rust diagnostics
+- `<leader>rs`: show Rust syntax tree
+- `<leader>rS`: Rust structural search and replace
+- `<leader>rk` / `<leader>rK`: move Rust item up/down
+- `<leader>rv`: show Cargo crate versions
+- `<leader>rF`: show Cargo crate features
+- `<leader>rD`: show Cargo crate dependencies
+- `<leader>ru` / `<leader>rU`: update/upgrade Cargo crate
+- `<leader>rA`: update all Cargo crates
 
 Leader is space.

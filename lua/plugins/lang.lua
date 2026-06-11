@@ -3,6 +3,9 @@ return {
     "mrcjkb/rustaceanvim",
     version = "^5",
     ft = { "rust" },
+    dependencies = {
+      "mfussenegger/nvim-dap",
+    },
     init = function()
       vim.g.rustaceanvim = {
         tools = {
@@ -43,6 +46,13 @@ return {
             map("n", "<leader>rc", "<cmd>RustLsp openCargo<cr>", "Rust open Cargo.toml")
             map("n", "<leader>ro", "<cmd>RustLsp openDocs<cr>", "Rust open docs.rs")
             map("n", "<leader>rp", "<cmd>RustLsp parentModule<cr>", "Rust parent module")
+            map("n", "<leader>rR", "<cmd>RustLsp reloadWorkspace<cr>", "Reload Rust workspace")
+            map("n", "<leader>rf", "<cmd>RustLsp flyCheck<cr>", "Run Rust fly check")
+            map("n", "<leader>rj", "<cmd>RustLsp relatedDiagnostics<cr>", "Related Rust diagnostics")
+            map("n", "<leader>rs", "<cmd>RustLsp syntaxTree<cr>", "Rust syntax tree")
+            map({ "n", "x" }, "<leader>rS", "<cmd>RustLsp ssr<cr>", "Rust structural search replace")
+            map("n", "<leader>rk", "<cmd>RustLsp moveItem up<cr>", "Move Rust item up")
+            map("n", "<leader>rK", "<cmd>RustLsp moveItem down<cr>", "Move Rust item down")
             map("n", "J", "<cmd>RustLsp joinLines<cr>", "Rust join lines")
 
             if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
@@ -62,6 +72,7 @@ return {
             ["rust-analyzer"] = {
               cargo = {
                 allFeatures = true,
+                autoreload = true,
                 buildScripts = {
                   enable = true,
                 },
@@ -69,6 +80,7 @@ return {
               check = {
                 command = "clippy",
                 allTargets = true,
+                features = "all",
               },
               checkOnSave = true,
               completion = {
@@ -78,12 +90,50 @@ return {
                 callable = {
                   snippets = "add_parentheses",
                 },
+                fullFunctionSignatures = {
+                  enable = true,
+                },
+                privateEditable = {
+                  enable = true,
+                },
               },
               diagnostics = {
                 enable = true,
                 experimental = {
                   enable = true,
                 },
+                styleLints = {
+                  enable = true,
+                },
+              },
+              hover = {
+                actions = {
+                  debug = {
+                    enable = true,
+                  },
+                  enable = true,
+                  gotoTypeDef = {
+                    enable = true,
+                  },
+                  implementations = {
+                    enable = true,
+                  },
+                  references = {
+                    enable = true,
+                  },
+                  run = {
+                    enable = true,
+                  },
+                },
+                memoryLayout = {
+                  enable = true,
+                },
+              },
+              imports = {
+                granularity = {
+                  group = "module",
+                },
+                prefix = "self",
               },
               inlayHints = {
                 bindingModeHints = {
@@ -152,11 +202,52 @@ return {
               procMacro = {
                 enable = true,
               },
+              semanticHighlighting = {
+                operator = {
+                  specialization = {
+                    enable = true,
+                  },
+                },
+              },
+              workspace = {
+                symbol = {
+                  search = {
+                    scope = "workspace_and_dependencies",
+                  },
+                },
+              },
             },
           },
         },
       }
     end,
+  },
+  {
+    "saecki/crates.nvim",
+    tag = "stable",
+    event = { "BufRead Cargo.toml" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      completion = {
+        cmp = {
+          enabled = true,
+        },
+      },
+      lsp = {
+        enabled = true,
+        actions = true,
+        completion = true,
+        hover = true,
+      },
+    },
+    keys = {
+      { "<leader>rv", function() require("crates").show_versions_popup() end, desc = "Cargo crate versions" },
+      { "<leader>rF", function() require("crates").show_features_popup() end, desc = "Cargo crate features" },
+      { "<leader>rD", function() require("crates").show_dependencies_popup() end, desc = "Cargo crate dependencies" },
+      { "<leader>ru", function() require("crates").update_crate() end, desc = "Update Cargo crate" },
+      { "<leader>rU", function() require("crates").upgrade_crate() end, desc = "Upgrade Cargo crate" },
+      { "<leader>rA", function() require("crates").update_all_crates() end, desc = "Update all Cargo crates" },
+    },
   },
   {
     "folke/neodev.nvim",
