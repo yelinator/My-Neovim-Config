@@ -239,6 +239,14 @@ enabled automatically.
 Use `<leader>ci` to hide or restore inlay hints and `<leader>or` to run npm
 scripts discovered by Overseer.
 
+Tailwind CSS IntelliSense is provided by the `tailwindcss` language server. It
+attaches to common web filetypes, including React, Vue, Svelte, Astro, MDX,
+HTML, CSS, SCSS, PHP, and Rust template/component files, and recognizes utility
+classes inside `class`, `className`, `class:list`, `cn(...)`, `clsx(...)`,
+`cva(...)`, `tw(...)`, and `twMerge(...)`. Use `:Mason` to confirm
+`tailwindcss-language-server` is installed and `:LspInfo` inside a Tailwind
+project to confirm the server is attached.
+
 ### Rust
 
 Rust uses Rustaceanvim, Rust Analyzer, Clippy, rustfmt, crates.nvim, Neotest,
