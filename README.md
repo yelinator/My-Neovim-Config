@@ -230,6 +230,17 @@ formatting, Neotest for tests, and nvim-dap-python for debugging.
 4. Use `<leader>tn` or `<leader>tf` to run tests.
 5. Use `<leader>td` to debug the nearest test.
 
+### Odoo
+
+Odoo addon work uses Pyright with local Odoo source and addon paths in
+`python.analysis.extraPaths`, so imports such as `from odoo import models,
+fields, api` resolve against the local checkouts.
+
+If an external Odoo language server executable named `odoo-ls`, `odoo_ls`,
+`odoo-lsp`, or `odoo-language-server` is available on `PATH`, Neovim also
+starts it inside addon directories that contain `__manifest__.py` or
+`__openerp__.py`.
+
 ### JavaScript And TypeScript
 
 JavaScript and TypeScript use `ts_ls`, ESLint, Prettier, and Jest. Inlay hints

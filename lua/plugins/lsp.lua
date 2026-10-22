@@ -48,6 +48,48 @@ return {
       local lsp = require("config.lsp")
       local capabilities = lsp.capabilities()
 
+      local function first_executable(commands)
+        for _, command in ipairs(commands) do
+          if vim.fn.executable(command) == 1 then
+            return command
+          end
+        end
+      end
+
+      local function odoo_root_dir(bufnr, on_dir)
+        local root = vim.fs.root(bufnr, { "__manifest__.py", "__openerp__.py" })
+        if root then
+          on_dir(root)
+        end
+      end
+
+      local function existing_paths(paths)
+        local existing = {}
+        for _, path in ipairs(paths) do
+          if vim.uv.fs_stat(path) then
+            table.insert(existing, path)
+          end
+        end
+        return existing
+      end
+
+      local odoo_paths = existing_paths({
+        "/Users/macbookpro/Coding/odoo",
+        "/Users/macbookpro/Coding/odoo/odoo",
+        "/Users/macbookpro/Coding/odoo/odoo/addons",
+        "/Users/macbookpro/Coding/odoo/addons",
+        "/Users/macbookpro/Coding/odoo-enterprise",
+        "/Users/macbookpro/Coding/odoo-enterprise/odoo",
+        "/Users/macbookpro/Coding/odoo-enterprise/odoo/addons",
+        "/Users/macbookpro/Work/odoo",
+        "/Users/macbookpro/Work/odoo/odoo",
+        "/Users/macbookpro/Work/odoo/odoo/addons",
+        "/Users/macbookpro/Work/odoo/addons",
+        "/Users/macbookpro/Work/odoo/retail/addons",
+      })
+
+      local odoo_ls_cmd = first_executable({ "odoo-ls", "odoo_ls", "odoo-lsp", "odoo-language-server" })
+
       vim.diagnostic.config({
         virtual_text = { prefix = "●" },
         severity_sort = true,
@@ -99,7 +141,23 @@ return {
         htmx = {},
         intelephense = {},
         jsonls = {},
-        pyright = {},
+        odoo_ls = odoo_ls_cmd and {
+          cmd = { odoo_ls_cmd },
+          filetypes = { "python", "xml", "javascript", "typescript" },
+          root_dir = odoo_root_dir,
+        } or nil,
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = "workspace",
+                extraPaths = odoo_paths,
+                useLibraryCodeForTypes = true,
+              },
+            },
+          },
+        },
         ruff = {},
         svelte = {},
         tailwindcss = {
