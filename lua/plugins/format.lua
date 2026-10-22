@@ -26,6 +26,7 @@ return {
       end,
       formatters_by_ft = {
         css = { "prettier" },
+        gleam = { "gleam" },
         go = { "gofumpt", "goimports" },
         html = { "prettier" },
         javascript = { "prettier" },
