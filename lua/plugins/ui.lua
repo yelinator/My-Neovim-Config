@@ -105,6 +105,7 @@ return {
           enabled = true,
         },
         hijack_netrw_behavior = "open_default",
+        use_libuv_file_watcher = true,
         filtered_items = {
           visible = true,
           hide_dotfiles = false,
@@ -129,6 +130,7 @@ return {
     "stevearc/oil.nvim",
     opts = {
       default_file_explorer = false,
+      watch_for_changes = true,
       view_options = {
         show_hidden = true,
       },

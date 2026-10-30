@@ -75,6 +75,7 @@ Useful installation and health commands:
 init.lua                  Entry point
 lua/config/options.lua    Editor behavior and filetype detection
 lua/config/keymaps.lua    Global keymaps
+lua/config/autocmds.lua   Autocommands that reload files changed on disk
 lua/config/lsp.lua        Shared LSP capabilities and keymaps
 lua/config/lazy.lua       Plugin manager bootstrap
 lua/plugins/lsp.lua       Language servers
