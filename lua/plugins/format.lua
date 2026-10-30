@@ -25,6 +25,7 @@ return {
         return { timeout_ms = 1000, lsp_fallback = true }
       end,
       formatters_by_ft = {
+        bash = { "shfmt" },
         css = { "prettier" },
         gleam = { "gleam" },
         go = { "gofumpt", "goimports" },
@@ -40,6 +41,7 @@ return {
         python = { "ruff_format", "ruff_organize_imports" },
         rust = { "rustfmt" },
         scss = { "prettier" },
+        sh = { "shfmt" },
         typescript = { "prettier" },
         typescriptreact = { "prettier" },
         yaml = { "prettier" },
